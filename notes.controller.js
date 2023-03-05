@@ -17,6 +17,21 @@ async function addNote(title) {
   console.log(chalk.bgGreen('Note was added!'))
 }
 
+<<<<<<< HEAD
+=======
+async function editNote(id, title) {
+  const notes = await getNotes()
+  const editedNotes = notes.map(elem => {
+    if (elem.id === id) return {title, id}
+    else return elem
+  })
+  console.log(editedNotes)
+
+  await saveNotes(editedNotes)
+  console.log(chalk.bgGreen(`Note with id="${id}" was renamed!`))
+}
+
+>>>>>>> feature/WEbServer
 async function getNotes() {
   const notes = await fs.readFile(notesPath, {encoding: 'utf-8'})
   return Array.isArray(JSON.parse(notes)) ? JSON.parse(notes) : []
@@ -38,6 +53,7 @@ async function printNotes() {
 async function removeNote(id) {
   const notes = await getNotes()
 
+<<<<<<< HEAD
   const fNotes = notes.filter(note =>
     note.id !== id
   )
@@ -48,3 +64,14 @@ async function removeNote(id) {
 module.exports = {
   addNote, printNotes, removeNote
 }
+=======
+  const filtered = notes.filter(note => note.id !== id)
+
+  await saveNotes(filtered)
+  console.log(chalk.red(`Note with id="${id}" has been removed.`))
+}
+
+module.exports = {
+  addNote, getNotes, removeNote, editNote
+}
+>>>>>>> feature/WEbServer
