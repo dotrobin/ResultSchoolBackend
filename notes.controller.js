@@ -20,7 +20,7 @@ async function addNote(title) {
 async function editNote(id, title) {
   const notes = await getNotes()
   const editedNotes = notes.map(elem => {
-    if (elem.id === id) return {id, title}
+    if (elem.id === id) return {title, id}
     else return elem
   })
   console.log(editedNotes)

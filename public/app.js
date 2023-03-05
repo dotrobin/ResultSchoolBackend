@@ -11,9 +11,10 @@ document.addEventListener('click', event => {
 document.addEventListener('click', event => {
   if (event.target.dataset.type === 'edit') {
     const id = event.target.dataset.id
-
-    let result = prompt("Введите новое название")
-    if (result) rename(id, result)
+    let result = prompt("Введите новое название", "Новое значение")
+    if (result) rename(id, result).then(() =>{
+      event.target.closest('i') = result
+    })
   }
 })
 
